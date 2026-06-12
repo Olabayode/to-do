@@ -1,3 +1,5 @@
+import { FaCheck, FaPen, FaTrash, FaUndo } from "react-icons/fa";
+
 function TodoItem(props) {
   function handleComplete() {
     props.dispatch({
@@ -26,16 +28,36 @@ function TodoItem(props) {
   }
 
   return (
-    <li>
-      <span>{props.todo.text}</span>
-      <button type="button" onClick={handleComplete}>
-        {props.todo.completed ? "Undo" : "Complete"}
+    <li className="todo-item">
+      <span className={props.todo.completed ? "task-text completed" : "task-text"}>
+        {props.todo.text}
+      </span>
+      <button
+        type="button"
+        className="icon-button complete-button"
+        onClick={handleComplete}
+        aria-label={props.todo.completed ? "Mark task incomplete" : "Complete task"}
+        title={props.todo.completed ? "Mark incomplete" : "Complete"}
+      >
+        {props.todo.completed ? <FaUndo /> : <FaCheck />}
       </button>
-      <button type="button" onClick={handleUpdate}>
-        Update
+      <button
+        type="button"
+        className="icon-button update-button"
+        onClick={handleUpdate}
+        aria-label="Update task"
+        title="Update"
+      >
+        <FaPen />
       </button>
-      <button type="button" onClick={handleDelete}>
-        Delete
+      <button
+        type="button"
+        className="icon-button delete-button"
+        onClick={handleDelete}
+        aria-label="Delete task"
+        title="Delete"
+      >
+        <FaTrash />
       </button>
     </li>
   );

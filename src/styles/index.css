@@ -6,3 +6,48 @@ body {
     color: #453939;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.todo-item {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.task-text {
+    flex: 1;
+}
+
+.task-text.completed {
+    opacity: 0.65;
+    text-decoration: line-through;
+}
+
+.icon-button {
+    align-items: center;
+    background-color: #ffffff;
+    border: 1px solid #d8c5c5;
+    border-radius: 0.25rem;
+    color: #453939;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 1rem;
+    height: 2rem;
+    justify-content: center;
+    width: 2rem;
+}
+
+.icon-button:hover {
+    background-color: #f7dddd;
+}
+
+.complete-button {
+    color: #276749;
+}
+
+.update-button {
+    color: #2c5282;
+}
+
+.delete-button {
+    color: #9b2c2c;
+}
