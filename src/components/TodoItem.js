@@ -28,7 +28,7 @@ function TodoItem(props) {
   }
 
   return (
-    <li className="todo-item">
+    <li className={props.todo.completed ? "todo-item completed-card" : "todo-item"}>
       <div className="task-content">
         <span className={props.todo.completed ? "task-text completed" : "task-text"}>
           {props.todo.text}

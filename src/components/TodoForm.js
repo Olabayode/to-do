@@ -12,14 +12,17 @@ function TodoForm(props) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="todo-form" onSubmit={handleSubmit}>
       <input
+        className="todo-input"
         type="text"
         placeholder="Add a new task"
         value={props.taskText}
         onChange={handleChange}
       />
-      <button type="submit">Add</button>
+      <button className="add-button" type="submit">
+        ADD
+      </button>
     </form>
   );
 }

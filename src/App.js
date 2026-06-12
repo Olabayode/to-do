@@ -9,6 +9,16 @@ const initialState = {
   taskText: "",
 };
 
+function formatTaskDate() {
+  return new Date().toLocaleString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 function getInitialState() {
   const savedTasks = localStorage.getItem(TASKS_DATA);
 
@@ -42,7 +52,7 @@ function todoReducer(state, action) {
             id: Date.now(),
             text: state.taskText,
             completed: false,
-            date: new Date().toLocaleString(),
+            date: formatTaskDate(),
           },
         ],
         taskText: "",
@@ -55,7 +65,7 @@ function todoReducer(state, action) {
             return {
               ...task,
               text: action.text,
-              date: new Date().toLocaleString(),
+              date: formatTaskDate(),
             };
           }
 
@@ -94,10 +104,15 @@ function App() {
   }, [state.tasks]);
 
   return (
-    <main>
-      <h1>To-Do App</h1>
-      <TodoForm taskText={state.taskText} dispatch={dispatch} />
-      <TodoList todos={state.tasks} dispatch={dispatch} />
+    <main className="app">
+      <section className="todo-panel">
+        <div className="app-header">
+          <p className="app-label">Task manager</p>
+          <h1>To-Do App</h1>
+        </div>
+        <TodoForm taskText={state.taskText} dispatch={dispatch} />
+        <TodoList todos={state.tasks} dispatch={dispatch} />
+      </section>
     </main>
   );
 }
