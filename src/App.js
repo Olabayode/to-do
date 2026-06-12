@@ -1,11 +1,26 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
+
+const TASKS_DATA = "todoTasks";
 
 const initialState = {
   tasks: [],
   taskText: "",
 };
+
+function getInitialState() {
+  const savedTasks = localStorage.getItem(TASKS_DATA);
+
+  if (savedTasks) {
+    return {
+      ...initialState,
+      tasks: JSON.parse(savedTasks),
+    };
+  }
+
+  return initialState;
+}
 
 function todoReducer(state, action) {
   switch (action.type) {
@@ -27,6 +42,7 @@ function todoReducer(state, action) {
             id: Date.now(),
             text: state.taskText,
             completed: false,
+            date: new Date().toLocaleString(),
           },
         ],
         taskText: "",
@@ -39,6 +55,7 @@ function todoReducer(state, action) {
             return {
               ...task,
               text: action.text,
+              date: new Date().toLocaleString(),
             };
           }
 
@@ -70,7 +87,11 @@ function todoReducer(state, action) {
 }
 
 function App() {
-  const [state, dispatch] = useReducer(todoReducer, initialState);
+  const [state, dispatch] = useReducer(todoReducer, initialState, getInitialState);
+
+  useEffect(() => {
+    localStorage.setItem(TASKS_DATA, JSON.stringify(state.tasks));
+  }, [state.tasks]);
 
   return (
     <main>

@@ -29,9 +29,12 @@ function TodoItem(props) {
 
   return (
     <li className="todo-item">
-      <span className={props.todo.completed ? "task-text completed" : "task-text"}>
-        {props.todo.text}
-      </span>
+      <div className="task-content">
+        <span className={props.todo.completed ? "task-text completed" : "task-text"}>
+          {props.todo.text}
+        </span>
+        <span className="task-date">{props.todo.date}</span>
+      </div>
       <button
         type="button"
         className="icon-button complete-button"

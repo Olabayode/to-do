@@ -13,13 +13,25 @@ body {
     gap: 0.5rem;
 }
 
-.task-text {
+.task-content {
     flex: 1;
+    min-width: 0;
+}
+
+.task-text {
+    display: block;
 }
 
 .task-text.completed {
     opacity: 0.65;
     text-decoration: line-through;
+}
+
+.task-date {
+    color: #7c6a6a;
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
 }
 
 .icon-button {
